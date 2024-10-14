@@ -26,7 +26,7 @@ import type {
   ComponentObjectPropsOptions,
   ComponentPropsOptions,
   ExtractPropTypes,
-  PropOptions,
+  PropOptionsDefaultByT,
 } from './componentProps'
 import { warn } from './warning'
 import type { SlotsType, StrictUnwrapSlotsType } from './componentSlots'
@@ -285,25 +285,25 @@ export type DefineModelOptions<T = any, G = T, S = T> = {
  * ```
  */
 export function defineModel<T, M extends PropertyKey = string, G = T, S = T>(
-  options: ({ default: any } | { required: true }) &
-    PropOptions<T> &
+  options: ({ default: T } | { required: true }) &
+    PropOptionsDefaultByT<T> &
     DefineModelOptions<T, G, S>,
 ): ModelRef<T, M, G, S>
 
 export function defineModel<T, M extends PropertyKey = string, G = T, S = T>(
-  options?: PropOptions<T> & DefineModelOptions<T, G, S>,
+  options?: PropOptionsDefaultByT<T> & DefineModelOptions<T, G, S>,
 ): ModelRef<T | undefined, M, G | undefined, S | undefined>
 
 export function defineModel<T, M extends PropertyKey = string, G = T, S = T>(
   name: string,
-  options: ({ default: any } | { required: true }) &
-    PropOptions<T> &
+  options: ({ default: T } | { required: true }) &
+    PropOptionsDefaultByT<T> &
     DefineModelOptions<T, G, S>,
 ): ModelRef<T, M, G, S>
 
 export function defineModel<T, M extends PropertyKey = string, G = T, S = T>(
   name: string,
-  options?: PropOptions<T> & DefineModelOptions<T, G, S>,
+  options?: PropOptionsDefaultByT<T> & DefineModelOptions<T, G, S>,
 ): ModelRef<T | undefined, M, G | undefined, S | undefined>
 
 export function defineModel(): any {

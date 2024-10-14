@@ -67,6 +67,21 @@ export interface PropOptions<T = any, D = T> {
   skipFactory?: boolean
 }
 
+export interface PropOptionsDefaultByT<T = any, D = T> {
+  type?: PropType<T> | true | null
+  required?: boolean
+  default?: D | DefaultFactory<D> | null | undefined | object
+  validator?(value: unknown, props: Data): boolean
+  /**
+   * @internal
+   */
+  skipCheck?: boolean
+  /**
+   * @internal
+   */
+  skipFactory?: boolean
+}
+
 export type PropType<T> = PropConstructor<T> | (PropConstructor<T> | null)[]
 
 type PropConstructor<T = any> =
